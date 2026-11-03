@@ -1,0 +1,10 @@
+#!name=Spotify AI 歌词翻译（Akile · Clash）
+#!desc=Spotify 原文+中文译文。脚本从你的 GitHub 仓库加载；在模块详情的“设置”中填写 API_KEY。
+#!arguments=API_KEY:YOUR_API_KEY,MODEL:gpt-6.1-sol,API_ENDPOINT:https://aigateway.akile.ai/v1/chat/completions
+#!arguments-desc=API_KEY：填写 Akile API 密钥，仅保存在客户端\nMODEL：默认 gpt-6.1-sol\nAPI_ENDPOINT：默认 Akile 官方文档中的兼容接口；若你的令牌要求其他地址，可修改
+
+[Script]
+spotify AI歌词翻译 = type=http-response,pattern=^https:\/\/spclient\.wg\.spotify\.com\/color-lyrics\/v2\/track\/,requires-body=1,binary-body-mode=1,max-size=0,script-path=https://raw.githubusercontent.com/tukitozuki/spotify-lyrics/main/spotify-ai-lyrics.js,argument=apiKey={{{API_KEY}}}&model={{{MODEL}}}&endpoint={{{API_ENDPOINT}}},timeout=60
+
+[MITM]
+hostname = %APPEND% spclient.wg.spotify.com
